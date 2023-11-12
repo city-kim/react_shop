@@ -1,9 +1,13 @@
-import react from '@vitejs/plugin-react'
-import vike from 'vike/plugin'
-import { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import { fileURLToPath, URL } from 'node:url'
 
-const config: UserConfig = {
-  plugins: [react(), vike()]
-}
-
-export default config
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
